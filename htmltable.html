@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>body{
+        padding: 0;
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+
+    }
+    table{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border-collapse: collapse;
+        width: 800;
+        height: 200px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2),;
+    }
+    tr{
+        transition: all -2s ease-in;
+        cursor: pointer;
+    }
+    th,td{
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+
+    }
+    #header{
+        background-color: #1672a0;
+        color:#fff;
+    }
+    h1{
+        font-weight: 600;
+        text-align: center;
+        background-color: #1672a0 ;
+        color: #fff;
+        padding: 10px 0px;
+    }
+    tr:hover{
+        background-color: #1672a0;
+    }
+    @media only screen and (max-width: 768px){
+        table{
+            width: 50%;
+        }
+    }
+        </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr id="header">
+                <th scope="row">id</th>
+                <th scope="row">email</th>
+                <th scope="row">first_name</th>
+                <th scope="row">last_name</th>
+                <th scope="row">phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% ShopifyCustomer[] customer=(ShopifyCustomer[]) request.getAttribute("customers"); %>
+                <% for (int i=0; i < customer.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%=customer[i].getId()%>
+                        </td>
+                        <td>
+                            <%=customer[i].getEmail()%>
+                        </td>
+                        <td>
+                            <%=customer[i].getFirst_name()%>
+                        </td>
+                        <td>
+                            <%=customer[i].getLast_name()%>
+                        </td>
+                        <td>
+                            <%=customer[i].getPhone()%>
+                        </td>
+                        <td>
+                            <button name="id" type="submit" value="<%=customer[i].getId()%>">View</button>
+                            <%--<input name="id" type="submit" class="button" value="<%=customer[i].getId()%>">View</input> --%>
+        
+                        </td>
+                    </tr>
+                    <% } %>
+        </tbody>
+      
+        <tr>
+            <td>Abha</td>
+            <td>Bdksf</td>
+            <td>23</td>
+            <td>female</td>
+            <td>sister</td>
+        </tr>
+        <tr>
+            <td>Abha</td>
+            <td>Bdksf</td>
+            <td>23</td>
+            <td>female</td>
+            <td>sister</td>
+        </tr>
+    
+    </table>
+</body>
+</html>
+
+
+----------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customers </title>
+    <style type="text/css">
+        .nav-bar {
+            display: flex;
+            justify-content: space-left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <a href="customerForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" id="submit" class="btn btn-primary btn-block">Create</button>
+                </div>
+            </div>
+        </a>
+
+    </div>
+    <form action="singleCustomer" method="POST">
+        <table style="margin: 0 auto;" class="table">
+            <thead>
+                <tr>
+                    <th scope="row">id</th>
+                    <th scope="row">email</th>
+                    <th scope="row">first_name</th>
+                    <th scope="row">last_name</th>
+                    <th scope="row">phone</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% ShopifyCustomer[] customer=(ShopifyCustomer[]) request.getAttribute("customers"); %>
+                    <% for (int i=0; i < customer.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%=customer[i].getId()%>
+                            </td>
+                            <td>
+                                <%=customer[i].getEmail()%>
+                            </td>
+                            <td>
+                                <%=customer[i].getFirst_name()%>
+                            </td>
+                            <td>
+                                <%=customer[i].getLast_name()%>
+                            </td>
+                            <td>
+                                <%=customer[i].getPhone()%>
+                            </td>
+                            <td>
+                                <button name="id" type="submit" value="<%=customer[i].getId()%>">View</button>
+                                <%--<input name="id" type="submit" class="button"
+                                    value="<%=customer[i].getId()%>">View</input> --%>
+
+                            </td>
+                        </tr>
+                        <% } %>
+            </tbody>
+        </table>
+    </form>
+
+
+</body>
+
+</html>
